@@ -125,3 +125,8 @@ export | grep -E -e ' (PATH|LD_LIBRARY_PATH|LIBRARY_PATH|INCLUDE_PATH|CPATH|CPPP
 
 topic "Rewrite package-config files"
 find $BUILD_DIR/.apt -type f -ipath '*/pkgconfig/*.pc' | xargs --no-run-if-empty -n 1 sed -i -e 's!^prefix=\(.*\)$!prefix='"$BUILD_DIR"'/.apt\1!g'
+
+# cleanup junk
+rm -fr $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/dri \
+  $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libLLVM-12.so.1 \
+  $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libvulkan*
